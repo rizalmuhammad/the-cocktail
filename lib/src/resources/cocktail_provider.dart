@@ -43,7 +43,6 @@ class CocktailApiProvider{
 
   Future<List<Drink>> filterByCategories({String strDrink}) async{
     var response = await http.get(filterByCategory+strDrink);
-    print(filterByCategory+"Ordinary_Drink");
     
     if (response.statusCode == 200) {
       var data = json.decode(response.body);
@@ -75,6 +74,18 @@ class CocktailApiProvider{
       return ingredients;
     } else {
       throw Exception('Failed to load data');
+    }
+  }
+
+  Future<List<Drink>> detailDrink({String idDrink}) async{
+    var response = await http.get(detailCocktailId+idDrink);
+
+    if (response.statusCode == 200){
+      var data = json.decode(response.body);
+      List<Drink> details = CocktailsModel.fromJson(data).drinks;
+      return details;
+    } else {
+      throw Exception('Failed to Load Data');
     }
   }
 }

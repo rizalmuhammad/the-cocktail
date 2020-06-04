@@ -1,5 +1,6 @@
 import 'package:cocktailapp/src/model/drinks.dart';
 import 'package:cocktailapp/src/resources/repository.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:rxdart/rxdart.dart';
 
 class CocktailFilterBloc {
@@ -13,8 +14,10 @@ class CocktailFilterBloc {
     _filterCategory.sink.add(category);
   }
 
-  dispose(){
-    _filterCategory?.close();
+  @mustCallSuper
+  void dispose() async{
+    await _filterCategory?.drain();
+    _filterCategory?.close(); 
   }
 }
 
