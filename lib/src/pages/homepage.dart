@@ -1,7 +1,10 @@
+import 'package:cocktailapp/src/model/drinks.dart';
 import 'package:cocktailapp/src/widget/atoms/image.dart';
 import 'package:cocktailapp/src/widget/atoms/text.dart';
 import 'package:cocktailapp/src/widget/molecules/card_item.dart';
+import 'package:cocktailapp/src/widget/organisms/list_category.dart';
 import 'package:flutter/material.dart';
+import 'package:cocktailapp/src/bloc/cocktail_categories_bloc.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -9,6 +12,20 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    bloc.fetchAllCategories();
+  }
+
+  @override
+  void dispose(){
+    super.dispose();
+    bloc.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,16 +34,31 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
         backgroundColor: Colors.blue,
       ),
-      body: Column(
-        children: <Widget>[
-          AtomText('Ini Text Atom'),
-          AtomText.description('Ini Atom Text Description'),
-          AtomText.header('Ini header'),
-          // ImageHolder(image: 'https://www.thecocktaildb.com/images/media/drink/vrwquq1478252802.jpg', imageHeight: 50.0,),
-          // ImageHolder(imageHeight: 50.0,),
-          CardItem(title: 'Ini Gambar', url: 'https://www.thecocktaildb.com/images/media/drink/vrwquq1478252802.jpg',)
-        ],
-      ),
+      body: SingleChildScrollView(
+              child: StreamBuilder(
+          stream: bloc.allCategories,
+          builder: ((context, snapshot){
+            if (snapshot.hasData) {
+              return Column(
+                children: <Widget>[
+                  _buildList(snapshot),
+                  _buildList(snapshot),
+                  _buildList(snapshot),
+                ],
+              );
+            } else if (snapshot.hasError) {
+              return AtomText(snapshot.error.toString());
+            }
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          })
+        ),
+      )
     );
+  }
+
+  Widget _buildList(AsyncSnapshot<List<Drink>> snapshot){
+    return Container(width: MediaQuery.of(context).size.width*1, height: 100, child: ListCategory(drinks: snapshot.data,));
   }
 }
