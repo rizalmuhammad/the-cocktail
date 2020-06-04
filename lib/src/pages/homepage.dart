@@ -1,10 +1,9 @@
-import 'package:cocktailapp/src/model/drinks.dart';
-import 'package:cocktailapp/src/widget/atoms/image.dart';
+import 'package:cocktailapp/src/bloc/cocktail_alcoholic_bloc.dart';
 import 'package:cocktailapp/src/widget/atoms/text.dart';
-import 'package:cocktailapp/src/widget/molecules/card_item.dart';
+import 'package:cocktailapp/src/widget/organisms/list_alcoholics.dart';
 import 'package:cocktailapp/src/widget/organisms/list_category.dart';
+import 'package:cocktailapp/src/widget/organisms/list_ingredient.dart';
 import 'package:flutter/material.dart';
-import 'package:cocktailapp/src/bloc/cocktail_categories_bloc.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -12,53 +11,121 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    bloc.fetchAllCategories();
+    cocktails.fetchAllAlcoholics();
   }
 
   @override
-  void dispose(){
+  void dispose() {
     super.dispose();
-    bloc.dispose();
+    cocktails.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Home Page'),
-        centerTitle: true,
-        backgroundColor: Colors.blue,
-      ),
-      body: SingleChildScrollView(
-              child: StreamBuilder(
-          stream: bloc.allCategories,
-          builder: ((context, snapshot){
-            if (snapshot.hasData) {
-              return Column(
-                children: <Widget>[
-                  _buildList(snapshot),
-                  _buildList(snapshot),
-                  _buildList(snapshot),
-                ],
-              );
-            } else if (snapshot.hasError) {
-              return AtomText(snapshot.error.toString());
-            }
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          })
+        appBar: AppBar(
+          title: Text('Home Page'),
+          centerTitle: true,
+          backgroundColor: Colors.blue,
         ),
-      )
-    );
+        body: SingleChildScrollView(
+            child: Column(
+          children: <Widget>[
+            _buildListCategory(),
+            _buildListAlcohol(),
+            _buildListIngredient(),
+          ],
+        )));
   }
 
-  Widget _buildList(AsyncSnapshot<List<Drink>> snapshot){
-    return Container(width: MediaQuery.of(context).size.width*1, height: 100, child: ListCategory(drinks: snapshot.data,));
+  Widget _buildListCategory() {
+    return StreamBuilder(
+        stream: cocktails.allCategories,
+        builder: ((context, snapshot) {
+          if (snapshot.hasData) {
+            return Container(
+                width: MediaQuery.of(context).size.width * 1,
+                height: 100,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Container(
+                        padding: EdgeInsets.only(left: 20, bottom: 5, top: 5),
+                        child: AtomText.header("Filter by Categories")),
+                    Expanded(
+                      child: ListCategory.categories(
+                        drinks: snapshot.data,
+                      ),
+                    ),
+                  ],
+                ));
+          } else if (snapshot.hasError) {
+            return AtomText(snapshot.error.toString());
+          }
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        }));
+  }
+
+  Widget _buildListAlcohol() {
+    return StreamBuilder(
+        stream: cocktails.allAlcoholics,
+        builder: ((context, snapshot) {
+          if (snapshot.hasData) {
+            return Container(
+                width: MediaQuery.of(context).size.width * 1,
+                height: 100,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Container(
+                        padding: EdgeInsets.only(left: 20, bottom: 5, top: 5),
+                        child: AtomText.header("Filter by Alcoholic")),
+                    Expanded(
+                      child: ListAlcoholic.alcoholics(
+                        drinks: snapshot.data,
+                      ),
+                    ),
+                  ],
+                ));
+          } else if (snapshot.hasError) {
+            return AtomText(snapshot.error.toString());
+          }
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        }));
+  }
+
+  Widget _buildListIngredient() {
+    return StreamBuilder(
+        stream: cocktails.allIngredients,
+        builder: ((context, snapshot) {
+          if (snapshot.hasData) {
+            return Container(
+                width: MediaQuery.of(context).size.width * 1,
+                height: 100,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Container(
+                        padding: EdgeInsets.only(left: 20, bottom: 5, top: 5),
+                        child: AtomText.header("Filter by Ingredients")),
+                    Expanded(
+                        child:
+                            ListIngredient.ingredient(drinks: snapshot.data)),
+                  ],
+                ));
+          } else if (snapshot.hasError) {
+            return AtomText(snapshot.error.toString());
+          }
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        }));
   }
 }

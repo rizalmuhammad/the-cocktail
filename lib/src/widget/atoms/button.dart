@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
 class AtomButton extends StatelessWidget {
-  final VoidCallback onPressed;
+  final Function onPressed;
   final String title;
+  final String index;
 
-  const AtomButton.categories({this.onPressed, this.title});
+  const AtomButton.categories({this.onPressed, this.title, this.index});
 
   @override
   Widget build(BuildContext context) {

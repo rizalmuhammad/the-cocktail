@@ -1,3 +1,4 @@
+
 class CocktailsModel {
   List<Drink> drinks;
 
@@ -39,6 +40,7 @@ class Drink {
   String strCreativeCommonsConfirmed;
   String dateModified;
   List<IngredientMeasure> lstIngredients = [];
+  String strIngredient1;
 
   Drink({
     this.idDrink,
@@ -66,6 +68,7 @@ class Drink {
     this.strCreativeCommonsConfirmed,
     this.dateModified,
     this.lstIngredients,
+    this.strIngredient1
   });
 
   
@@ -97,6 +100,7 @@ class Drink {
         strCreativeCommonsConfirmed: json["strCreativeCommonsConfirmed"],
         dateModified: json["dateModified"],
         lstIngredients: takeData(json),
+        strIngredient1: json["strIngredient1"]
       );
 
   Map<String, dynamic> toJson() => {
@@ -125,6 +129,7 @@ class Drink {
         
         "strCreativeCommonsConfirmed": strCreativeCommonsConfirmed,
         "dateModified": dateModified,
+        "strIngredient1": strIngredient1
       };
 
   static List<IngredientMeasure> takeData(Map<String, dynamic> json) {
