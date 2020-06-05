@@ -3,6 +3,8 @@ import 'package:cocktailapp/src/pages/detail_drink_page.dart';
 import 'package:cocktailapp/src/widget/molecules/card_item.dart';
 import 'package:flutter/material.dart';
 
+// ListView to show List of Drinks based on Category
+
 class FilterCategory extends StatelessWidget {
   const FilterCategory.categories({this.drinks});
 

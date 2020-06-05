@@ -1,5 +1,8 @@
+
 import 'package:cocktailapp/src/widget/atoms/text.dart';
 import 'package:flutter/material.dart';
+
+// Implement atomic design for Image
 
 class ImageHolder extends StatelessWidget {
   final image;
@@ -8,7 +11,6 @@ class ImageHolder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final imgsrc = "https://www.thecocktaildb.com/images/media/drink/vrwquq1478252802.jpg";
     return Container(
       height: imageHeight,
       child: image != null
@@ -16,9 +18,6 @@ class ImageHolder extends StatelessWidget {
               decoration: BoxDecoration(
                   image: DecorationImage(
                       image: NetworkImage(image), fit: BoxFit.cover),
-                  // borderRadius: BorderRadius.only(
-                  //     topLeft: Radius.circular(15),
-                  //     topRight: Radius.circular(15))
                     ),
             )
           : Container(

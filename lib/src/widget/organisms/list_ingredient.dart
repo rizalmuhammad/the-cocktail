@@ -3,6 +3,8 @@ import 'package:cocktailapp/src/pages/ingredient_page.dart';
 import 'package:cocktailapp/src/widget/atoms/button.dart';
 import 'package:flutter/material.dart';
 
+//ListView to show List Drinks based on Ingredients
+
 class ListIngredient extends StatelessWidget {
   const ListIngredient.ingredient({this.drinks});
 

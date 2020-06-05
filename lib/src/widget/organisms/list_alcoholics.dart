@@ -3,6 +3,8 @@ import 'package:cocktailapp/src/pages/alcoholic_page.dart';
 import 'package:cocktailapp/src/widget/atoms/button.dart';
 import 'package:flutter/material.dart';
 
+//ListView to show List Drinks based on Alcoholics
+
 class ListAlcoholic extends StatelessWidget {
   const ListAlcoholic.alcoholics({this.drinks});
 

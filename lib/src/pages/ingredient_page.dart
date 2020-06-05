@@ -17,14 +17,12 @@ class _IngredientsPageState extends State<IngredientsPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     filter.fetchFilterIngredient(widget.strIngredient);
   }
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     filter.dispose();
   }

@@ -5,6 +5,7 @@ import 'package:cocktailapp/src/model/drinks.dart';
 
 class CocktailApiProvider{
 
+  // Calling API to get all List of Alcoholics type
   Future<List<Drink>> getListAlcoholics() async{
     var response = await http.get(listAlcoholics);
 
@@ -17,6 +18,7 @@ class CocktailApiProvider{
     }
   }
 
+  // Calling API to get all List of Drinks Categories
   Future<List<Drink>> getListCategories() async{
     var response = await http.get(listCategories);
 
@@ -29,6 +31,7 @@ class CocktailApiProvider{
     }
   }
 
+  // Calling API to get all List of Drinks Ingredients
   Future<List<Drink>> getListIngredients() async{
     var response = await http.get(listIngredients);
 
@@ -41,6 +44,7 @@ class CocktailApiProvider{
     }
   }
 
+  // Calling API to get List of Drink based on their Categories
   Future<List<Drink>> filterByCategories({String strDrink}) async{
     var response = await http.get(filterByCategory+strDrink);
     
@@ -53,6 +57,7 @@ class CocktailApiProvider{
     }
   }
 
+  // Calling API to get List of Drink based on their Alcoholics type
   Future<List<Drink>> filterByAlcoholics({String strAlcohol}) async{
     var response = await http.get(filterByAlcoholic+strAlcohol);
     print(response.toString());
@@ -67,6 +72,7 @@ class CocktailApiProvider{
     }
   }
 
+  // Calling API to get List of Drink based on their Ingredients
   Future<List<Drink>> filterByIngredients({String strIngredient}) async{
     var response = await http.get(filterByIngredient+strIngredient);
     

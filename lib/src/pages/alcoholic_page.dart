@@ -17,14 +17,12 @@ class _AlcoholicPageState extends State<AlcoholicPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     filter.fetchFilterAlcohol(widget.strAlcoholic);
   }
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     filter.dispose();
   }

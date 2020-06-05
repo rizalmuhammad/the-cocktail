@@ -1,3 +1,4 @@
+// This is model for class Drink
 
 class CocktailsModel {
   List<Drink> drinks;

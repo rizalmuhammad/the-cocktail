@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+// Implement atomic design for Text
+// There are 3 types ot Text that I made, AtomText, AtomText.description and AtomText.header
+
 class AtomText extends StatelessWidget {
   
   const AtomText(this.title,

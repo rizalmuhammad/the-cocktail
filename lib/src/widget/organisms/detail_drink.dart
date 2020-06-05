@@ -3,6 +3,9 @@ import 'package:cocktailapp/src/widget/atoms/image.dart';
 import 'package:cocktailapp/src/widget/atoms/text.dart';
 import 'package:flutter/material.dart';
 
+//Template to show detail of Drinks
+// Contains Drinks Name, Alcoholic, Category and Ingredients
+
 class DetailDrinks extends StatelessWidget {
   const DetailDrinks.cocktail({this.drinks});
 

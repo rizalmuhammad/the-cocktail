@@ -17,14 +17,12 @@ class _DetailDrinkPageState extends State<DetailDrinkPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     detail.fetchDetailDrink(widget.idDrink);
   }
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     detail.dispose();
   }

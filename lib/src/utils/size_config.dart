@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+// SizeConfig is built to make easy set Height and Width
+
 double sizeHorizontal;
 double sizeVertical;
 

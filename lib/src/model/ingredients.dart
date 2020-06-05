@@ -1,3 +1,5 @@
+// This is model for class Ingredients
+
 class Ingredients {
     Ingredients({
         this.ingredients,

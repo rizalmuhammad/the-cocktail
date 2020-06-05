@@ -2,6 +2,8 @@ import 'package:cocktailapp/src/widget/atoms/image.dart';
 import 'package:cocktailapp/src/widget/atoms/text.dart';
 import 'package:flutter/material.dart';
 
+// Molecules for Card Item
+
 class CardItem extends StatefulWidget {
 
   CardItem({this.url, this.title = ''});
