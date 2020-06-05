@@ -53,8 +53,10 @@ class CocktailApiProvider{
     }
   }
 
-  Future<List<Drink>> filterByAlcoholics() async{
-    var response = await http.get(filterByAlcoholic);
+  Future<List<Drink>> filterByAlcoholics({String strAlcohol}) async{
+    var response = await http.get(filterByAlcoholic+strAlcohol);
+    print(response.toString());
+    print(response.statusCode);
     
     if (response.statusCode == 200) {
       var data = json.decode(response.body);
@@ -65,8 +67,8 @@ class CocktailApiProvider{
     }
   }
 
-  Future<List<Drink>> filterByIngredients() async{
-    var response = await http.get(filterByIngredient);
+  Future<List<Drink>> filterByIngredients({String strIngredient}) async{
+    var response = await http.get(filterByIngredient+strIngredient);
     
     if (response.statusCode == 200) {
       var data = json.decode(response.body);

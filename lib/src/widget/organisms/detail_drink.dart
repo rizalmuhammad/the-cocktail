@@ -4,7 +4,6 @@ import 'package:cocktailapp/src/widget/atoms/text.dart';
 import 'package:flutter/material.dart';
 
 class DetailDrinks extends StatelessWidget {
-
   const DetailDrinks.cocktail({this.drinks});
 
   final List<Drink> drinks;
@@ -13,30 +12,59 @@ class DetailDrinks extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.builder(
       itemCount: drinks.length,
-      itemBuilder: (context, index){
+      itemBuilder: (context, index) {
         return Column(
           children: <Widget>[
-            ImageHolder(image: drinks[index].strDrinkThumb, imageHeight: 300.0,),
+            ImageHolder(
+              image: drinks[index].strDrinkThumb,
+              imageHeight: 300.0,
+            ),
             AtomText.header(drinks[index].strDrink),
-            AtomText.description(drinks[index].strAlcoholic),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Column(
-                  children: <Widget>[
-                    AtomText(drinks[index].strCategory),
-                    AtomText(drinks[index].strAlcoholic),
-                  ],
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Container(
+                      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                      child: AtomText("Category: "+drinks[index].strCategory)),
+                      Container(
+                      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                      child: AtomText("Alcoholic: "+drinks[index].strAlcoholic)),
+                    ],
                 ),
-                Column(
-                  children: <Widget>[
-                    // AtomText(drinks[index].strIba),
-                    (drinks[index].strIba == null) ? AtomText("No description") : AtomText(drinks[index].strIba),
-                    AtomText(drinks[index].strGlass)
-                  ],
-                )
+                Container(
+                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                    child: AtomText("Ingredients:")),
+                ListView.builder(
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    itemCount: drinks[index].lstIngredients.length,
+                    itemBuilder: (context, i) {
+                      return Container(
+                        padding: EdgeInsets.symmetric(horizontal: 20),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            (drinks[index].lstIngredients[i].ingredientM == null) ? AtomText("") : AtomText.description(
+                                drinks[index].lstIngredients[i].ingredientM),
+                                (drinks[index].lstIngredients[i].measureM == null) ? AtomText("") : AtomText.description(
+                                drinks[index].lstIngredients[i].measureM),
+                          ],
+                        ),
+                      );
+                    }),
+                Container(
+                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                    child: AtomText("Instructions:")),
+                Container(
+                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    child: (drinks[index].strInstructions == null)
+                        ? AtomText("")
+                        : AtomText.description(drinks[index].strInstructions)),
               ],
-            )
+            ),
           ],
         );
       },

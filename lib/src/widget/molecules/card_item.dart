@@ -28,7 +28,7 @@ class _CardItemState extends State<CardItem> {
               width: 100.0,
               height: 100.0,
               padding: EdgeInsets.only(bottom: 10),
-              child: ImageHolder(image: widget.url, imageHeight: 40.0,),
+              child: ImageHolder(image: widget.url, imageHeight: 100.0),
             ),
             Container(margin: EdgeInsets.only(bottom: 5), child: AtomText.description(widget.title))
           ],

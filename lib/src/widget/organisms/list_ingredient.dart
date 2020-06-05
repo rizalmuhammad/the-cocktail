@@ -1,5 +1,5 @@
 import 'package:cocktailapp/src/model/drinks.dart';
-import 'package:cocktailapp/src/pages/category_page.dart';
+import 'package:cocktailapp/src/pages/ingredient_page.dart';
 import 'package:cocktailapp/src/widget/atoms/button.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +19,7 @@ class ListIngredient extends StatelessWidget {
             child: AtomButton.categories(
               title: drinks[index].strIngredient1,
               onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context) => CategoryPage()));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => IngredientsPage(strIngredient: drinks[index].strIngredient1,)));
               },
             )
         );

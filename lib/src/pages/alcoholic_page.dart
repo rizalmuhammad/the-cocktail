@@ -3,26 +3,28 @@ import 'package:cocktailapp/src/widget/atoms/text.dart';
 import 'package:cocktailapp/src/widget/organisms/gridview_category.dart';
 import 'package:flutter/material.dart';
 
-class CategoryPage extends StatefulWidget {
+class AlcoholicPage extends StatefulWidget {
 
-  final String strCategory;
+  final String strAlcoholic;
 
-  CategoryPage({this.strCategory});
+  AlcoholicPage({this.strAlcoholic});
 
   @override
-  _CategoryPageState createState() => _CategoryPageState();
+  _AlcoholicPageState createState() => _AlcoholicPageState();
 }
 
-class _CategoryPageState extends State<CategoryPage> {
+class _AlcoholicPageState extends State<AlcoholicPage> {
 
   @override
   void initState() {
+    // TODO: implement initState
     super.initState();
-    filter.fetchAllFilter(widget.strCategory);
+    filter.fetchFilterAlcohol(widget.strAlcoholic);
   }
 
   @override
   void dispose() {
+    // TODO: implement dispose
     super.dispose();
     filter.dispose();
   }
@@ -31,17 +33,19 @@ class _CategoryPageState extends State<CategoryPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Filter by Category"),
+        title: Text("Filter by Alcoholic"),
         centerTitle: true,
         backgroundColor: Colors.blue,
       ),
-      body: Container(child: _buildFilterCategory())
+      body: Container(
+        child: _buildFilterAlcoholic(),
+      ),
     );
   }
 
-  Widget _buildFilterCategory(){
+  Widget _buildFilterAlcoholic(){
     return StreamBuilder(
-      stream: filter.filterCategory,
+      stream: filter.filterAlcohol,
       builder: ((context, snapshot){
         if (snapshot.hasData) {
           return Center(child: FilterCategory.categories(drinks: snapshot.data,));

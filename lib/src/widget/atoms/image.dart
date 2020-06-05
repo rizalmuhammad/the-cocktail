@@ -16,9 +16,10 @@ class ImageHolder extends StatelessWidget {
               decoration: BoxDecoration(
                   image: DecorationImage(
                       image: NetworkImage(image), fit: BoxFit.cover),
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(15),
-                      topRight: Radius.circular(15))),
+                  // borderRadius: BorderRadius.only(
+                  //     topLeft: Radius.circular(15),
+                  //     topRight: Radius.circular(15))
+                    ),
             )
           : Container(
               color: Colors.grey[200],

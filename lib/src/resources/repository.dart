@@ -9,7 +9,7 @@ class Repository{
   Future<List<Drink>> getListIngredients() => _cocktailApiProvider.getListIngredients();
   Future<List<Drink>> getListCategories() => _cocktailApiProvider.getListCategories();
   Future<List<Drink>> filterByCategories(String strDrink) => _cocktailApiProvider.filterByCategories(strDrink: strDrink);
-  Future<List<Drink>> filterByAlcoholics() => _cocktailApiProvider.filterByAlcoholics();
-  Future<List<Drink>> filterByIngredients() => _cocktailApiProvider.filterByIngredients();
+  Future<List<Drink>> filterByAlcoholics(String strAlcohol) => _cocktailApiProvider.filterByAlcoholics(strAlcohol: strAlcohol);
+  Future<List<Drink>> filterByIngredients(String strIngredient) => _cocktailApiProvider.filterByIngredients(strIngredient: strIngredient);
   Future<List<Drink>> detailDrink(String idDrink) => _cocktailApiProvider.detailDrink(idDrink: idDrink);
 }

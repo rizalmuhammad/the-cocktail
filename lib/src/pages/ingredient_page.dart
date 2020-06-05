@@ -3,26 +3,28 @@ import 'package:cocktailapp/src/widget/atoms/text.dart';
 import 'package:cocktailapp/src/widget/organisms/gridview_category.dart';
 import 'package:flutter/material.dart';
 
-class CategoryPage extends StatefulWidget {
+class IngredientsPage extends StatefulWidget {
 
-  final String strCategory;
+  final String strIngredient;
 
-  CategoryPage({this.strCategory});
+  IngredientsPage({this.strIngredient});
 
   @override
-  _CategoryPageState createState() => _CategoryPageState();
+  _IngredientsPageState createState() => _IngredientsPageState();
 }
 
-class _CategoryPageState extends State<CategoryPage> {
+class _IngredientsPageState extends State<IngredientsPage> {
 
   @override
   void initState() {
+    // TODO: implement initState
     super.initState();
-    filter.fetchAllFilter(widget.strCategory);
+    filter.fetchFilterIngredient(widget.strIngredient);
   }
 
   @override
   void dispose() {
+    // TODO: implement dispose
     super.dispose();
     filter.dispose();
   }
@@ -31,17 +33,17 @@ class _CategoryPageState extends State<CategoryPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Filter by Category"),
+        title: Text("Filter by Ingredients"),
         centerTitle: true,
         backgroundColor: Colors.blue,
       ),
-      body: Container(child: _buildFilterCategory())
+      body: Container(child: _buildFilterIngredient(),),
     );
   }
 
-  Widget _buildFilterCategory(){
+  Widget _buildFilterIngredient(){
     return StreamBuilder(
-      stream: filter.filterCategory,
+      stream: filter.filterIngredient,
       builder: ((context, snapshot){
         if (snapshot.hasData) {
           return Center(child: FilterCategory.categories(drinks: snapshot.data,));

@@ -6,7 +6,8 @@ import 'package:flutter/material.dart';
 class DetailDrinkPage extends StatefulWidget {
 
   final String idDrink;
-  DetailDrinkPage({this.idDrink});
+  final String title;
+  DetailDrinkPage({this.idDrink, this.title});
 
   @override
   _DetailDrinkPageState createState() => _DetailDrinkPageState();
@@ -32,17 +33,14 @@ class _DetailDrinkPageState extends State<DetailDrinkPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Detail Page"),
+        title: Text(widget.title),
         centerTitle: true,
         backgroundColor: Colors.blue,
       ),
-      body: SingleChildScrollView(
-        child: Container(
-          height: MediaQuery.of(context).size.height*1,
+      body:Container(
           width: MediaQuery.of(context).size.width*1,
           child: _buildDetailDrink(),
         ),
-      ),
     );
   }
 

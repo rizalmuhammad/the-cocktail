@@ -8,8 +8,8 @@ class AtomText extends StatelessWidget {
     this.size = 12.0}) : assert(textAlign != null);
   
   const AtomText.description(this.title,
-    {this.textAlign = TextAlign.left,
-    this.color = Colors.black,
+    {this.textAlign = TextAlign.justify,
+    this.color = Colors.grey,
     this.size = 10.0}) : assert(textAlign != null);
   
   const AtomText.header(this.title,

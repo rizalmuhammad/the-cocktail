@@ -10,17 +10,19 @@ class FilterCategory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-        itemCount: drinks.length,
-        itemBuilder: (context, index) {
-          return GestureDetector(
-            onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context) => DetailDrinkPage(idDrink: drinks[index].idDrink,)));
-            },
-              child: CardItem(
-            title: drinks[index].strDrink,
-            url: drinks[index].strDrinkThumb + "/preview",
-          ));
-        });
+    return Container(
+      child: ListView.builder(
+          itemCount: drinks.length,
+          itemBuilder: (context, index) {
+            return GestureDetector(
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context) => DetailDrinkPage(idDrink: drinks[index].idDrink, title: drinks[index].strDrink,)));
+              },
+                child: CardItem(
+              title: drinks[index].strDrink,
+              url: drinks[index].strDrinkThumb + "/preview",
+            ));
+          }),
+    );
   }
 }
